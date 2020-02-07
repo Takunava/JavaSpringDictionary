@@ -1,0 +1,6 @@
+system\dao\DaoDictionary.class
+system\model\Phrase.class
+system\fileWorker\fileWorker.class
+system\controller\ControllerDictionary.class
+system\model\ModelDictionary.class
+system\service\ServiceDictionary.class
