@@ -13,7 +13,7 @@ import java.util.logging.Logger;
 
 @Controller
 @RequestMapping("/dictionary")
-public class ControllerDictionary implements InterfaceController{
+public class ControllerDictionary implements InterfaceController {
 
     private static final Logger log = Logger.getLogger(String.valueOf(ControllerDictionary.class));
 
@@ -37,7 +37,12 @@ public class ControllerDictionary implements InterfaceController{
             (@RequestParam ("Path")String path) throws IOException {
 
         log.info(path);
-        serviceDictionary.loadingDictionaryFromFile(path, "^[a-zA-Z0-9]+$");
+
+        if(path.equals("C:\\\\temp\\\\dictionary.txt")){
+            serviceDictionary.loadingDictionaryFromFile(path, "^[a-zA-Z0-9]+$");
+        } else if(path.equals("C:\\\\temp\\\\dictionary1.txt")) {
+            serviceDictionary.loadingDictionaryFromFile(path, "[1-9]+");
+        }
         log.info(serviceDictionary.toString());
         return serviceDictionary.returnDictionaries();
     }
@@ -74,9 +79,10 @@ public class ControllerDictionary implements InterfaceController{
     }
 
 
-    @Override
+
     @RequestMapping("/delete")
     @ResponseBody
+    @Override
     public ModelDictionary deletePhrase
             (@RequestParam ("incomeWord")String incomeWord,
              @RequestParam("clearWord") String clearWord) throws IOException {
@@ -87,10 +93,6 @@ public class ControllerDictionary implements InterfaceController{
         log.info(serviceDictionary.toString());
         return serviceDictionary.returnDictionaries();
     }
-
-
-
-
 
 
 }

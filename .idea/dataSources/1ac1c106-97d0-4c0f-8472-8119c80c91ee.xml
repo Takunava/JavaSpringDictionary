@@ -1128,70 +1128,78 @@
     </collation>
     <table id="284" parent="2" name="dictionariestable"/>
     <table id="285" parent="2" name="dictionary"/>
-    <column id="286" parent="284" name="ID">
+    <table id="286" parent="2" name="modeldictionary_phrases">
+      <Engine>MyISAM</Engine>
+    </table>
+    <column id="287" parent="284" name="ID">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="287" parent="284" name="filePath">
+    <column id="288" parent="284" name="filePath">
       <Position>2</Position>
       <DataType>varchar(45)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="288" parent="284" name="patternOne">
+    <column id="289" parent="284" name="pattern">
       <Position>3</Position>
       <DataType>varchar(45)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="289" parent="284" name="patternTwo">
-      <Position>4</Position>
-      <DataType>varchar(45)|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="290" parent="284" name="phrases">
-      <Position>5</Position>
-      <DataType>varchar(128)|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <key id="291" parent="284" name="PRIMARY">
+    <key id="290" parent="284" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="292" parent="285" name="ID">
+    <column id="291" parent="285" name="ID">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="293" parent="285" name="clearWord">
+    <column id="292" parent="285" name="clearWord">
       <Position>2</Position>
       <DataType>varchar(250)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="294" parent="285" name="incomeWord">
+    <column id="293" parent="285" name="incomeWord">
       <Position>3</Position>
       <DataType>varchar(250)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="295" parent="285" name="dictionary_ID_uindex">
+    <index id="294" parent="285" name="dictionary_ID_uindex">
       <ColNames>ID</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <key id="296" parent="285" name="PRIMARY">
+    <key id="295" parent="285" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="297" parent="285" name="dictionary_ID_uindex">
+    <key id="296" parent="285" name="dictionary_ID_uindex">
       <ColNames>ID</ColNames>
       <UnderlyingIndexName>dictionary_ID_uindex</UnderlyingIndexName>
     </key>
+    <column id="297" parent="286" name="ModelDictionary_id">
+      <Position>1</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="298" parent="286" name="phrase">
+      <Position>2</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="299" parent="286" name="FKnqjf9el90ss1ipvohy4ui69yv">
+      <ColNames>ModelDictionary_id</ColNames>
+      <Type>btree</Type>
+    </index>
   </database-model>
 </dataSource>

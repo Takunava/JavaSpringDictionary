@@ -15,7 +15,8 @@ public class ServiceDictionary {
 
     @Autowired
     private ModelDictionary modelDictionary;
-
+    @Autowired
+    private DaoDictionary daoDictionary;
 
 
     public ModelDictionary returnDictionaries(){
@@ -38,9 +39,12 @@ public class ServiceDictionary {
                 modelDictionary.getDictionary().add(phrase);
                 System.out.println("Успешно добавлено");
                 this.uploadThisFileWhichDictionary(modelDictionary.getFilePathStr());
+                modelDictionary.phraseToString();
+                daoDictionary.uploadPhrase(modelDictionary);
                 return 0;
             }
             // this.UpdateFile();//апдейтим бд или файл
+
         }
         return 2;
 
@@ -50,6 +54,8 @@ public class ServiceDictionary {
             if(phrase.getIncomeWord().equals(modelDictionary.getDictionary().get(i).getIncomeWord()) && phrase.getClearWord().equals(modelDictionary.getDictionary().get(i).getClearWord())){
                 modelDictionary.getDictionary().remove(i);
                 this.uploadThisFileWhichDictionary(modelDictionary.getFilePathStr());
+                modelDictionary.phraseToString();
+                daoDictionary.uploadPhrase(modelDictionary);
                 return true;
             }
         }
@@ -100,6 +106,11 @@ public class ServiceDictionary {
             phrases.add(new Phrase(str[0], str[1]));
         }
         modelDictionary = new ModelDictionary(filePath,pattern, phrases);
+        modelDictionary.phraseToString();
+        daoDictionary.addPhrase(modelDictionary);
+
+
+
     }
 
     public void uploadThisFileWhichDictionary(String filePath) throws IOException {
