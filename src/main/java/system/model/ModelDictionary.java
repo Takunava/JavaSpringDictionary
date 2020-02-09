@@ -4,19 +4,30 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
+import java.beans.ConstructorProperties;
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
-
+@Entity
+@Table(name = "dictionariestable")
 @Component
-public class ModelDictionary {
+public class ModelDictionary implements Serializable{
 
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(name = "filePath")
     private String filePathStr;
 
+    @Column(name = "pattern")
     private String patternOne;
 
+    @ElementCollection
+    private List<String> phrases = new ArrayList<>();
+
+    @Transient
     private List<Phrase> dictionary = new ArrayList<Phrase>();
 
     public ModelDictionary() {
@@ -64,6 +75,13 @@ public class ModelDictionary {
     public void setId(Integer id) {
         this.id = id;
     }
+
+    public void phraseToString(){
+        for (int i = 0; i < dictionary.size(); i++){
+            this.phrases.add(dictionary.get(i).getIncomeWord() + " " + dictionary.get(i).getClearWord());
+        }
+    }
+
 
     @Override
     public String toString() {

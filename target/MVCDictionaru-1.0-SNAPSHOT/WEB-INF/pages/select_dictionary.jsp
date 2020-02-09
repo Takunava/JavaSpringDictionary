@@ -43,9 +43,6 @@
                     console.log(myDate);
                     renderDict(myDate);
                     selectPhrase();
-
-
-
                 })
                 .error(function (jqxhr) {
                     if (jqxhr.status == 404) {

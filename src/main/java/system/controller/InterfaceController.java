@@ -8,16 +8,16 @@ import system.model.Phrase;
 import java.io.IOException;
 
 public interface InterfaceController {
-    public ModelAndView selectDictionary();
-    public ModelDictionary viewDictionary
+    ModelAndView selectDictionary();
+    ModelDictionary viewDictionary
             (@RequestParam ("Path")String path) throws IOException;
-    public ModelDictionary addDictionary
+    ModelDictionary addDictionary
             (@RequestParam ("incomeWord")String incomeWord,
              @RequestParam("clearWord") String clearWord) throws IOException;
-    public Phrase searchPhrase
+    Phrase searchPhrase
             (@RequestParam ("Word")String word,
              @RequestParam("subjectOfSearch") int subjectOfSearch) throws IOException;
-    public ModelDictionary deletePhrase
+    ModelDictionary deletePhrase
             (@RequestParam ("incomeWord")String incomeWord,
              @RequestParam("clearWord") String clearWord) throws IOException;
 

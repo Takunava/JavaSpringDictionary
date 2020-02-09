@@ -5,19 +5,14 @@ import org.springframework.stereotype.Component;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-@Entity
-@Table(name = "DICTIONARY")
-@Component
+
 public class Phrase {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer ID;
 
-    @Column(name = "incomeWord")
     private String incomeWord;
-    @Column(name = "clearWord")
+
     private String clearWord;
+
 
     public Phrase() {
     }
