@@ -9,13 +9,14 @@ import system.model.Phrase;
 import system.service.ServiceDictionary;
 
 import java.io.IOException;
+import java.util.function.Supplier;
 import java.util.logging.Logger;
 
 @Controller
 @RequestMapping("/dictionary")
 public class ControllerDictionary implements InterfaceController {
 
-    private static final Logger log = Logger.getLogger(String.valueOf(ControllerDictionary.class));
+    final static Logger logger = Logger.getLogger(String.valueOf(ControllerDictionary.class));
 
 
     @Autowired
@@ -36,14 +37,14 @@ public class ControllerDictionary implements InterfaceController {
     public ModelDictionary viewDictionary
             (@RequestParam ("Path")String path) throws IOException {
 
-        log.info(path);
+        logger.info(path);
 
         if(path.equals("C:\\\\temp\\\\dictionary.txt")){
             serviceDictionary.loadingDictionaryFromFile(path, "^[a-zA-Z0-9]+$");
         } else if(path.equals("C:\\\\temp\\\\dictionary1.txt")) {
             serviceDictionary.loadingDictionaryFromFile(path, "[1-9]+");
         }
-        log.info(serviceDictionary.toString());
+        logger.info(serviceDictionary.toString());
         return serviceDictionary.returnDictionaries();
     }
 
@@ -54,13 +55,13 @@ public class ControllerDictionary implements InterfaceController {
     public ModelDictionary addDictionary
             (@RequestParam ("incomeWord")String incomeWord,
              @RequestParam("clearWord") String clearWord) throws IOException {
-        log.info(incomeWord);
-        log.info(clearWord);
+        logger.info(incomeWord);
+        logger.info(clearWord);
         int addingStatus = serviceDictionary.addPhrase(new Phrase(incomeWord, clearWord));
         if(addingStatus == 1){
            return null;
         }
-        log.info(serviceDictionary.toString());
+        logger.info(serviceDictionary.toString());
         return serviceDictionary.returnDictionaries();
     }
 
@@ -71,9 +72,9 @@ public class ControllerDictionary implements InterfaceController {
     public Phrase searchPhrase
             (@RequestParam ("Word")String word,
              @RequestParam("subjectOfSearch") int subjectOfSearch) throws IOException {
-        log.info(word);
-        //log.info(subjectOfSearch);
-        //log.info(serviceDictionary.searchPhrase(phrase, Integer.getInteger(subjectOfSearch)));
+        logger.info(word);
+        logger.info(Integer.toString(subjectOfSearch));
+        logger.info((Supplier<String>) serviceDictionary.searchPhrase(word, subjectOfSearch));
         Phrase tmp = serviceDictionary.searchPhrase(word, subjectOfSearch);
         return  tmp;
     }
@@ -86,11 +87,11 @@ public class ControllerDictionary implements InterfaceController {
     public ModelDictionary deletePhrase
             (@RequestParam ("incomeWord")String incomeWord,
              @RequestParam("clearWord") String clearWord) throws IOException {
-        log.info(incomeWord);
-        log.info(clearWord);
+        logger.info(incomeWord);
+        logger.info(clearWord);
         Phrase phrase = new Phrase(incomeWord, clearWord);
         serviceDictionary.deletePhrase(phrase);
-        log.info(serviceDictionary.toString());
+        logger.info(serviceDictionary.toString());
         return serviceDictionary.returnDictionaries();
     }
 
